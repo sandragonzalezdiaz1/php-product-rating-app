@@ -1,0 +1,35 @@
+<?php /* Usamos la vista app como plantilla */ ?>
+<?php $_shouldextend[1]=1; ?>
+<?php /* Sección aporta el título de la página */ ?>
+<?php $this->startSection('title', 'Error de conexión'); ?>
+
+<?php $this->startSection('header'); ?>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('pageTitle', 'Error de conexión a la base de datos'); ?>
+
+<?php $this->startSection('content'); ?>
+<div class="d-flex justify-content-center mt-5">
+ <div class="card border-danger" style="width: 26rem;">
+ <div class="card-header bg-danger text-white">
+ <i class="bi bi-exclamation-triangle-fill me-2"></i>
+ Error de conexión
+ </div>
+
+ <div class="card-body text-center">
+ <p class="card-text">
+ No se ha podido establecer la conexión con la base de datos.
+ </p>
+
+ <p class="text-muted small">
+ Por favor, inténtelo de nuevo más tarde.
+ </p>
+ </div>
+ </div>
+</div>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('app'); } ?>

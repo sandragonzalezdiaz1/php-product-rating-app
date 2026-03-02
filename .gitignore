@@ -1,0 +1,19 @@
+# NetBeans
+nbproject/private/
+nbproject/private.properties
+
+# Dependencies
+/vendor/
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Composer cache (optional)
+composer.phar
