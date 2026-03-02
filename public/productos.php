@@ -2,7 +2,7 @@
 
 require "../vendor/autoload.php";
 require "../src/error_handler.php";
-require_once __DIR__ . "/../src/estrellas_helper.php";
+require_once __DIR__ . "/../src/estrellas_helper.php"; // Helper para generar el HTML de las estrellas 
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
@@ -26,41 +26,49 @@ try {
     die;
 }
 
+// Creación de los objetos DAO para acceder a la BD
 $productoDao = new ProductoDao($bd);
 $votoDao = new VotoDao($bd);
 
 // Si el usuario ya esta validado
 if(isset($_SESSION['usuario'])){
-    // Recuperamos el usuario de la sesion
+    // Recuperamos el usuario autenticado desde la sesion
     $usuario = $_SESSION['usuario'];
     
     if(filter_has_var(INPUT_POST, "votar")){
-        // Lee el id del producto y sus puntos del formulario
+       
         $productoId = filter_input(INPUT_POST, 'producto', FILTER_VALIDATE_INT);
         $puntos = filter_input(INPUT_POST, 'puntos', FILTER_VALIDATE_INT);
         
-        // Crea el voto
+        // Crea el voto con los datos recibidos
         $voto = new Voto($puntos, $productoId, $usuario->getUsuario());
+        
+        // Array para construir la respuesta JSON
         $response = [];
         
         try {
-            // Persiste el voto 
+            // Guarda el voto en la base de datos
             $votoDao->crea($voto);
+            // Recupera el producto actualizado para recalcular valoración
             $producto = $productoDao->recuperaProductoPorId($productoId);
             
+            // Datos que se enviarán al cliente
             $response['votos'] = $producto->getVotos();
             $response['puntos'] = $producto->getPuntos();
-            $response['html']   = renderEstrellas($producto->getPuntos(), $producto->getVotos());
+            // Genera el HTML actualizado de las estrellas
+            $response['html'] = renderEstrellas($producto->getPuntos(), $producto->getVotos());
             
         } catch (Exception $ex) {
+            // En caso de error (por ejemplo: voto duplicado)
             $response['error'] = true;
         }
         
+        // Devuelve respuesta en formato JSON para el script votar.js
         header('Content-type: application/json');
         echo json_encode($response);
         die;
         
-    // Si no mostramos la tabla de productos    
+    // Si no muestra el listado de productos    
     } else {
         try {
             $productos = $productoDao->recuperaProductos();
@@ -69,6 +77,7 @@ if(isset($_SESSION['usuario'])){
             die("Error al recuperar los productos " . $ex->getMessage());
         }
         
+        // Renderiza la vista productos.blade.php
         echo $blade->run("productos", compact("usuario", "productos"));
         
     }

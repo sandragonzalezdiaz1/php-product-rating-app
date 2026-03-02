@@ -9,10 +9,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>@yield('title')</title>
     </head>
-    <body style="background:#39F7CB">
+    <body style="background:#3BE3AF">
         @yield('header')
         <div class="container mt-3">
-            <h3 class="text-center display-5 mt-5 mb-4">@yield('pageTitle')</h3>
+            <h3 class="text-center mt-5 mb-4">@yield('pageTitle')</h3>
             @yield('content')
         </div>
         
