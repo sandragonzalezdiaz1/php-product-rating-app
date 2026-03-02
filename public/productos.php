@@ -7,6 +7,7 @@ require_once __DIR__ . "/../src/estrellas_helper.php";
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
 use App\Modelo\Voto;
+use App\Modelo\Producto;
 use App\DAO\ProductoDao;
 use App\DAO\VotoDao;
 
@@ -49,6 +50,7 @@ if(isset($_SESSION['usuario'])){
             
             $response['votos'] = $producto->getVotos();
             $response['puntos'] = $producto->getPuntos();
+            $response['html']   = renderEstrellas($producto->getPuntos(), $producto->getVotos());
             
         } catch (Exception $ex) {
             $response['error'] = true;

@@ -60,16 +60,13 @@ function validarForm(event) {
                 
             }
         } else {
-            alert("Error HTTP: " + this.status + ": " + this.statusText);
+            alert("Error HTTP " + this.status + ": " + this.statusText);
            
         }
     };
 
-    xhr.onerror = function () {
-        alert("Error de red. No se pudo contactar con el servidor.");
-      
-    };
-
+    xhr.onerror = () => alert("Error de red. No se pudo contactar con el servidor.");
+     
     // Envia la petición AJAX con los datos del formulario
     xhr.send(params);
 

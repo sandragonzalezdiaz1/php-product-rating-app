@@ -8,8 +8,8 @@
 <div class="float float-end d-inline-flex m-3">
     <i class="bi bi-person-fill fs-3 me-2"></i>
     <input type="text" size='10px' value="{{ $usuario->getUsuario() }}" 
-           class="form-control mr-2 bg-transparent text-white font-weight-bold" disabled>
-    <a href="index.php?logout" class="btn btn-warning mr-2">Salir</a>
+           class="form-control me-2 bg-transparent text-white fw-bold" disabled>
+    <a href="index.php?logout" class="btn btn-warning me-2">Salir</a>
 </div>
 @endsection
 
@@ -30,7 +30,7 @@
             <td scope="row">{{ $producto->getId() }}</td>
             <td>{{ $producto->getNombre() }}</td>
             <td>
-                <div id="votos_{{ $producto->getId() }}"class="float-left">
+                <div id="votos_{{ $producto->getId() }}" class="float-start">
                    {!! renderEstrellas($producto->getPuntos(), $producto->getVotos()) !!}
                 
                 </div>
@@ -39,7 +39,7 @@
             <td>
                 <select name="puntos" id="puntos_{{ $producto->getId() }}" class="form-control">
                     @for ($i = 1; $i <= 5; $i++)
-                    <option>{{ $i }}</option>
+                    <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
             </td>

@@ -7,7 +7,7 @@ use App\Modelo\Usuario;
 
 
 /**
- * Clase de acceso a datos para la entidad Usuario.
+ * Clase DAO de acceso a datos para la entidad Usuario.
  * 
  * Se encarga de realizar las operaciones CRUD sobre la tabla usuarios.
  */
@@ -19,11 +19,9 @@ class UsuarioDao {
     private PDO $bd;
     
      /**
-     * Constructor de la clase UsuarioDAO
+     * Constructor de la clase.
      * 
-     * @param PDO $bd Conexión a la base de datos
-     * 
-     * @returns UsuarioDAO
+     * @param PDO $bd Conexión PDO a la base de datos
      */
     public function __construct(PDO $bd) {
         $this->bd = $bd;

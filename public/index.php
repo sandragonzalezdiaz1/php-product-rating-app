@@ -6,6 +6,7 @@ require "../src/error_handler.php";
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
 use App\DAO\UsuarioDao;
+use App\Modelo\Usuario;
 
 session_start();
 

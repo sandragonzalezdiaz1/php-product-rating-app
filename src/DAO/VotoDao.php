@@ -35,7 +35,7 @@ class VotoDao {
      */
     public function crea(Voto $voto): bool {
         
-        $sql = "insert into votos(cantidad, idPr, isUs) values (:cantidad, :idProducto, :idUsuario)";
+        $sql = "insert into votos(cantidad, idPr, idUs) values (:cantidad, :idProducto, :idUsuario)";
         $sth = $this->bd->prepare($sql);
         $resultado = $sth->execute([":cantidad" => $voto->getCantidad(), ":idProducto" => $voto->getIdProducto(), ":idUsuario" => $voto->getIdUsuario()]);
         return $resultado;
