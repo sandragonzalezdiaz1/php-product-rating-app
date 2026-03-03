@@ -37,7 +37,7 @@
 </div>
 <?php $this->stopSection(); ?>
 <?php $this->startSection('scripts'); ?>
-<script src="./js/validar_1.js"></script>
+<script src="./js/validar.js"></script>
 <?php $this->stopSection(); ?>
 
 

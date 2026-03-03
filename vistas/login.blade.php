@@ -37,6 +37,6 @@
 </div>
 @endsection
 @section ('scripts')
-<script src="./js/validar_1.js"></script>
+<script src="./js/validar.js"></script>
 @endsection
 

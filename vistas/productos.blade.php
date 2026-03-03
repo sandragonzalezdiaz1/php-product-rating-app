@@ -53,6 +53,6 @@
 @endsection
 
 @section('scripts')
-<script src="./js/votar_1.js"></script>
+<script src="./js/votar.js"></script>
 @endsection
 
