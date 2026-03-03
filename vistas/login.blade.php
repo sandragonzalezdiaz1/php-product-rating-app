@@ -7,7 +7,7 @@
 @section('pageTitle', "Login")
 
 @section('content')
-<div class="container-md mt-3">
+<div class="mt-3">
      <div class="d-flex flex-column align-items-center">
         <div id='mensaje' class="d-none alert alert-danger my-3" style="width: 20rem;" role="alert">
             Usuario o contraseña incorrectos
@@ -37,6 +37,6 @@
 </div>
 @endsection
 @section ('scripts')
-<script src="./js/validar.js"></script>
+<script src="./js/validar_1.js"></script>
 @endsection
 

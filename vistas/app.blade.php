@@ -12,7 +12,7 @@
     <body style="background:#3BE3AF">
         @yield('header')
         <div class="container mt-3">
-            <h1 class="text-center mt-5 mb-4">@yield('pageTitle')</h1>
+            <h1 class="text-center mt-4 mb-4">@yield('pageTitle')</h1>
             @yield('content')
         </div>
         

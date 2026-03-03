@@ -55,7 +55,7 @@
 <?php $this->stopSection(); ?>
 
 <?php $this->startSection('scripts'); ?>
-<script src="./js/votar.js"></script>
+<script src="./js/votar_1.js"></script>
 <?php $this->stopSection(); ?>
 
 

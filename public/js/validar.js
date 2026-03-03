@@ -1,78 +1,48 @@
 
-// Espera a que el DOM esté completamente cargado antes de ejecutar el script
-document.addEventListener("DOMContentLoaded", iniciar);
+// Espera a que el DOM esté completamente cargado
+$(document).ready(function () {
+    $("#form-login").submit(validarUsuario);
+});
 
-function iniciar() {
-    document.getElementById("form-login").addEventListener("submit", validarForm);
-}
-
-function validarForm(event) {
+function validarUsuario(event){
     // Evita que el formulario se envíe y recargue la página
     event.preventDefault();
     event.stopImmediatePropagation();
-
-    // Referencia al formulario que ha lanzado el evento
-    const form = event.target;
-   
-    // Oculta el mensaje de error en cada intento
-    document.getElementById("mensaje").classList.add("d-none");
     
-    // Recoge todos los datos del formulario
-    const formData = new FormData(form);
+    // Referencia al formulario que ha disparado el evento
+    const form = $(this);
 
-    // Obtiene el valor del campo login y lo añade/actualiza a los datos enviados
-    // Se utiliza set() para evitar duplicar el parametro si ya existe en el FormData
-    //let inputValue = form.querySelector('input[name="login"]').value;
-    //formData.set("login", inputValue); 
-    //
-    // Bandera para que index.php detecte que es una validación AJAX
-     formData.set("login", "1");
-     
-     
-    // Convierte los datos a formato application/x-www-form-urlencoded
-    let params = new URLSearchParams(formData).toString();
-
-
-    // Creación el objeto XMLHttpRequest para realizar la petición AJAX
-    let xhr = new XMLHttpRequest();
+    // Oculta el mensaje de error en cada nuevo intento de login
+    $("#mensaje").addClass("d-none"); 
     
-    // Indica que la respuesta del servidor se espera en formato JSON
-    xhr.responseType = 'json';
+    // Serializa los datos del formulario
+    let formData = form.serialize();
+
+    // Serializa todos los campos del formulario
+    formData += '&login=' + encodeURIComponent($('input[name="login"]').val());
     
-    // Configura la petición POST hacia index.php (validación de usuario en el servidor)
-    xhr.open("POST", "index.php", true);
-    
-    // Cabecera necesaria para enviar los datos en formato URL codificado
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.onload = function () {
-        if (this.status === 200) {
-            let response = this.response;
-            //console.log(response);
-
-            if (response && response.login) {
-                // Si las credenciales son correctas, se envia el formulario
-                form.submit();
-
-            } else {
-                // Si las credenciales son incorrectas, se muestra el mensaje de error
-                document.getElementById("mensaje").classList.remove("d-none");
+    // Petición AJAX para validar las credenciales en index.php
+     $.ajax({
+            url: "index.php",
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                //console.log(response);
                 
+                // Si el servidor devuelve login=true, significa que las credenciales son correctas
+                if (response && response.login) {
+                    // Enviamos el formulario de forma normal (redirige a productos.php)
+                    event.target.submit();
+                } else {
+                    // Si las credenciales son incorrectas, mostramos el mensaje de error
+                    $("#mensaje").removeClass("d-none");
+                }
+            },
+
+            error: function (xhr, status, error) {
+                // Gestión de errores HTTP o de red
+                alert("Error HTTP: " + xhr.status + " - " + error);
             }
-        } else {
-            alert("Error HTTP " + this.status + ": " + this.statusText);
-           
-        }
-    };
-
-    xhr.onerror = () => alert("Error de red. No se pudo contactar con el servidor.");
-     
-    // Envia la petición AJAX con los datos del formulario
-    xhr.send(params);
-
+        });
 }
-
-
-
-
-
