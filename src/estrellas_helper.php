@@ -17,24 +17,24 @@
  * @return string HTML con el texto y las estrellas correspondientes
  */
 function renderEstrellas(int $puntos, int $votos): string {
-   
+
     // Si el producto no tiene votos
     if ($votos <= 0) {
         return 'Sin valorar';
     }
 
     // Calcula la media de puntuación
-    $media = $puntos / $votos;  
-    
+    $media = $puntos / $votos;
+
     // Parte entera de la media (número de estrellas completas)
     $enteras = (int) floor($media);
-    
+
     // Determina si debe mostrarse media estrella
     $mediaEstrella = ($media - $enteras) >= 0.5;
 
     // Texto con el número de valoraciones
     $texto = $votos . ' ' . ($votos === 1 ? 'Valoración' : 'Valoraciones') . ' ';
-    
+
     // Añade las estrellas completas
     for ($i = 0; $i < $enteras; $i++) {
         $texto .= '<i class="bi bi-star-fill"></i>';

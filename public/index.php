@@ -4,11 +4,15 @@ require "../vendor/autoload.php";
 require "../src/error_handler.php";
 
 use eftec\bladeone\BladeOne;
+use Dotenv\Dotenv;
 use App\BD\BD;
 use App\DAO\UsuarioDao;
-use App\Modelo\Usuario;
 
 session_start();
+
+
+$dotenv = Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
 
 // Inicializa el acceso a las variables de entorno
 $vistas = __DIR__ . '/../vistas';
@@ -41,7 +45,7 @@ if (isset($_SESSION['usuario'])) {
         die;
     }
 
-} else if (filter_has_var(INPUT_POST, 'login')) {
+} elseif (filter_has_var(INPUT_POST, 'login')) {
     // Lee los valores del formulario
     $nombre = trim(filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_SPECIAL_CHARS));
     $pass = trim(filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW));

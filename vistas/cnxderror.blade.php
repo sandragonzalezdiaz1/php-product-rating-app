@@ -1,10 +1,8 @@
 {{-- Usamos la vista app como plantilla --}}
 @extends('app')
+
 {{-- Sección aporta el título de la página --}}
 @section('title', 'Error de conexión')
-
-@section('header')
-@endsection
 
 @section('pageTitle', 'Error de conexión a la base de datos')
 

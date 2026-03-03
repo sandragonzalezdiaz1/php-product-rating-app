@@ -1,15 +1,13 @@
-
 {{-- Usamos la vista app como plantilla --}}
 @extends('app')
+
 {{-- Sección aporta el título de la página --}}
 @section('title', "Login")
 
-@section('header')
-@endsection
-
 @section('pageTitle', "Login")
+
 @section('content')
-<div class="container-md mt-5">
+<div class="container-md mt-3">
      <div class="d-flex flex-column align-items-center">
         <div id='mensaje' class="d-none alert alert-danger my-3" style="width: 20rem;" role="alert">
             Usuario o contraseña incorrectos

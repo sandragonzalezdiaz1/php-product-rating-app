@@ -1,3 +1,4 @@
+
 // Espera a que el DOM esté completamente cargado antes de ejecutar el script
 document.addEventListener("DOMContentLoaded", iniciar);
 

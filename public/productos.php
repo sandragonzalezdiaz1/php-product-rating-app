@@ -5,13 +5,17 @@ require "../src/error_handler.php";
 require_once __DIR__ . "/../src/estrellas_helper.php"; // Helper para generar el HTML de las estrellas 
 
 use eftec\bladeone\BladeOne;
+use Dotenv\Dotenv;
 use App\BD\BD;
 use App\Modelo\Voto;
-use App\Modelo\Producto;
 use App\DAO\ProductoDao;
 use App\DAO\VotoDao;
 
 session_start();
+
+
+$dotenv = Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
 
 $vistas = __DIR__ . '/../vistas';
 $cache = __DIR__ . '/../cache';

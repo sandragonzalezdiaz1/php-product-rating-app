@@ -1,10 +1,8 @@
 <?php /* Usamos la vista app como plantilla */ ?>
 <?php $_shouldextend[1]=1; ?>
+
 <?php /* Sección aporta el título de la página */ ?>
 <?php $this->startSection('title', 'Error de conexión'); ?>
-
-<?php $this->startSection('header'); ?>
-<?php $this->stopSection(); ?>
 
 <?php $this->startSection('pageTitle', 'Error de conexión a la base de datos'); ?>
 

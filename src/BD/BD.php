@@ -1,59 +1,71 @@
 <?php
+
 namespace App\BD;
 
+use Dotenv\Dotenv;
 use PDO;
+use PDOException;
+use Exception;
 
 /**
- * Clase BD.
- * 
- * Gestiona la conexión a la base de datos utilizando el patrón Singleton,
- * asegurando que solo exista una única conexión PDO durante toda la aplicación.
+ * Clase que representa el singleton de la conexión a la Base de Datos
  */
-class BD
-{
-    /**
-     * Instancia única de la conexión PDO.
-     * 
-     * @var PDO|null
+class BD {
+    /*
+     * @var ?PDO $bd Almacena la única instancia PDO de conexión
      */
-    protected static $bd = null;
-    
-    /** Datos de configuración de la base de datos */
-    const DB_HOST = '127.0.0.1';
-    const DB_PORT = '3306';
-    const DB_DATABASE = 'valoraciones';
-    const DB_USERNAME = 'gestor';
-    const DB_PASSWORD = 'secreto';
-    
-    
+
+    private static ?BD $instance = null; // Singleton de la clase
+    private ?PDO $conexion = null; // Conexión PDO
+
     /**
-     * Constructor privado.
+     * Constructor privado de la clase BD
      * 
-     * Se define como privado para evitar la creación de instancias
-     * desde fuera de la clase (patrón Singleton).
      * 
-     * Inicializa la conexión PDO y configura el modo de errores
-     * para que lance excepciones.
+     * @returns void
      */
-    private function __construct()
-    {
-            self::$bd = new PDO("mysql:host=" . BD::DB_HOST . ";dbname=" . BD::DB_DATABASE, BD::DB_USERNAME, BD::DB_PASSWORD);
-            // Configura PDO para lanzar excepciones en caso de error
-            self::$bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    private function __construct() {
+        try {
+            // Cargar .env si aún no está cargado
+            if (!isset($_ENV['DB_HOST'])) {
+                $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+                $dotenv->safeLoad(); // Usa safeLoad para evitar errores si falta el .env
+            }
+
+            $host = $_ENV['DB_HOST'];
+            $database = $_ENV['DB_DATABASE'];
+            $usuario = $_ENV['DB_USUARIO'];
+            $password = $_ENV['DB_PASSWORD'];
+
+            // Crear la conexión PDO
+            $this->conexion = new PDO(
+                "mysql:host=$host;dbname=$database;charset=utf8mb4",
+                $usuario,
+                $password,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                ]
+            );
+        } catch (PDOException $e) {
+            throw new Exception("Error de conexión: " . $e->getMessage(), (int)$e->getCode());
+        }
     }
 
     /**
-     * Obtiene la conexión a la base de datos.
+     * Obtiene una instancia del singleton
      * 
-     * Si la conexión aún no existe, la crea.
-     * 
-     * @return PDO Instancia única de la conexión PDO
+     * @returns void
      */
-    public static function getConexion()
-    {
-        if (!self::$bd) {
-            new BD();
+    public static function getConexion(): PDO {
+        if (self::$instance === null) {
+            self::$instance = new BD();
         }
-        return self::$bd;
+        return self::$instance->conexion;
     }
+
+    // Evitar la clonación del objeto
+    public function __clone() {}
+
+    // Evitar la deserialización del objeto
+    public function __wakeup() {}
 }
