@@ -15,54 +15,14 @@ La aplicación implementa una arquitectura organizada con separación entre **mo
 
 # ✨ Funcionalidades
 
-- 🔐 Login de usuarios
-- 📦 Listado de productos
-- ⭐ Sistema de valoración mediante estrellas
-- 👤 Registro de votos por usuario
-- 📊 Cálculo automático de valoración media
-- 🖥 Interfaz dinámica con JavaScript
-- 🎨 Renderizado de vistas con BladeOne
-- 🗄 Persistencia de datos en MySQL
-
----
-
-# 🧱 Arquitectura del proyecto
-
-El proyecto sigue una estructura organizada para separar responsabilidades y facilitar el mantenimiento.
-
-php-product-rating-app
-│
-├── public/ # Punto de entrada de la aplicación
-│ ├── index.php
-│ ├── productos.php
-│ └── js/
-│
-├── src/
-│ ├── BD/ # Conexión a la base de datos
-│ ├── DAO/ # Acceso a datos
-│ │ ├── ProductoDao.php
-│ │ ├── UsuarioDao.php
-│ │ └── VotoDao.php
-│ │
-│ ├── Modelo/ # Entidades del dominio
-│ │ ├── Producto.php
-│ │ ├── Usuario.php
-│ │ └── Voto.php
-│ │
-│ ├── bd_esquema/ # Script de base de datos
-│ │ └── valoraciones.sql
-│ │
-│ ├── estrellas_helper.php
-│ └── error_handler.php
-│
-├── vistas/ # Plantillas Blade
-│ ├── app.blade.php
-│ ├── login.blade.php
-│ ├── productos.blade.php
-│ └── cnxderror.blade.php
-│
-├── cache/ # Cache de plantillas Blade
-└── composer.json
+- 🔐 Login de usuarios  
+- 📦 Listado de productos  
+- ⭐ Sistema de valoración mediante estrellas  
+- 👤 Registro de votos por usuario  
+- 📊 Cálculo automático de valoración media  
+- 🖥 Interfaz dinámica con JavaScript  
+- 🎨 Renderizado de vistas con BladeOne  
+- 🗄 Persistencia de datos en MySQL  
 
 ---
 
@@ -75,7 +35,7 @@ php-product-rating-app
 - **BladeOne**
 - **Composer**
 
-Conceptos aplicados:
+### Conceptos aplicados
 
 - Programación orientada a objetos
 - Patrón **DAO**
@@ -91,11 +51,9 @@ Conceptos aplicados:
 
 ```bash
 git clone https://github.com/tuusuario/php-product-rating-app.git
-
+```
 ## 2️⃣ Instalar dependencias
 composer install
-
----
 
 # ⭐ Sistema de valoración
 
@@ -103,15 +61,19 @@ El sistema de estrellas permite a los usuarios votar productos.
 
 Funciona mediante:
 
-JavaScript para capturar la interacción
+-JavaScript para capturar la interacción del usuario
 
-Peticiones al servidor
+-Peticiones al servidor para registrar el voto
 
-Persistencia en base de datos
+-Persistencia en base de datos
 
-Cálculo de media de votos
+-Cálculo automático de la media de votos
 
-Las estrellas se generan con un helper personalizado:
+Las estrellas se generan con un helper personalizado ubicado en:
 
 src/estrellas_helper.php
+
+
+
+
 
