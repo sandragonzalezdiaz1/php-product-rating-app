@@ -64,7 +64,7 @@ Además, el proyecto busca simular una **estructura de aplicación real**, aplic
 ## 1️⃣ Clonar el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/php-product-rating-app.git
+git clone https://github.com/sandragonzalezdiaz1/php-product-rating-app.git
 ```
 ## 2️⃣ Instalar dependencias
 
@@ -148,9 +148,9 @@ Este enfoque facilita el mantenimiento, la escalabilidad y la claridad del códi
 - Crear una **API REST** para gestionar productos y valoraciones.
 
   ---
-## 👩‍💻 Autora
+## 👩‍💻 Autor
 
-Proyecto desarrollado por **[Sandra]** como parte de mi formación en **Desarrollo de Aplicaciones Web (DAW)**.
+Proyecto desarrollado por **Sandra González** como parte de mi formación en **Desarrollo de Aplicaciones Web (DAW)**.
 
 **[Sandra González Díaz](https://github.com/sandragonzalezdiaz1)**
 
