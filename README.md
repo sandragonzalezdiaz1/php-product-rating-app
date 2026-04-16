@@ -6,10 +6,7 @@
 [![BladeOne](https://img.shields.io/badge/BladeOne-Template%20Engine-green)]()
 
 Aplicación web desarrollada en **PHP** que permite a los usuarios **valorar productos mediante un sistema de estrellas**.
-
-Este proyecto fue desarrollado como **proyecto final del módulo Desarrollo Web en Entorno Servidor (DWES)** y forma parte de mi **portfolio como desarrolladora web junior**.
-
-La aplicación implementa una arquitectura organizada con separación entre **modelo, acceso a datos y vistas**, siguiendo buenas prácticas de desarrollo backend.
+Implementa una arquitectura organizada con separación entre **modelo, acceso a datos y vistas**, siguiendo buenas prácticas de desarrollo backend.
 
 ---
 
@@ -93,9 +90,6 @@ Las estrellas se generan con un helper personalizado ubicado en:
 
 src/estrellas_helper.php
 
-## 🧠 Aprendizajes clave
-
-Durante el desarrollo de esta aplicación he puesto en práctica varios conceptos fundamentales del desarrollo backend con **PHP**, trabajando con una arquitectura organizada y separando responsabilidades entre las distintas capas de la aplicación.
 
 ### 🧩 Programación orientada a objetos
 
@@ -157,8 +151,6 @@ Este enfoque facilita el mantenimiento, la escalabilidad y la claridad del códi
 ## 👩‍💻 Autora
 
 Proyecto desarrollado por **[Sandra]** como parte de mi formación en **Desarrollo de Aplicaciones Web (DAW)**.
-
-Soy **desarrolladora web junior** interesada en el desarrollo **backend con PHP**, bases de datos y buenas prácticas de organización del código.
 
 **[Sandra González Díaz](https://github.com/sandragonzalezdiaz1)**
 
